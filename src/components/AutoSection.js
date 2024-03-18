@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Typography, Grid } from '@mui/material';
+import './styles.css';
 
 function AutoForm() {
   const [speakerCount, setSpeakerCount] = useState(0);
@@ -15,7 +16,16 @@ function AutoForm() {
   };
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
+    <div style={
+      { 
+        padding: '20px', 
+        backgroundColor: '#ffffcc',
+        borderRadius: '10px',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', // Optional: Add a shadow for depth
+        margin: '10px',
+
+       }
+      }>
       <Grid container spacing={3} alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Typography variant="subtitle1" align="center">Speaker</Typography>
@@ -23,13 +33,13 @@ function AutoForm() {
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button sx={{ bgcolor: '#ff0000', color: '#ffffff', margin: '0 4px' }} onClick={handleDecrementSpeaker}>-</Button>
+              <Button className='minusButton' onClick={handleDecrementSpeaker}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="h5">{speakerCount}</Typography>
             </Grid>
             <Grid item>
-              <Button sx={{ bgcolor: '#00ff00', color: '#ffffff', margin: '0 4px' }} onClick={handleIncrementSpeaker}>+</Button>
+              <Button className='addButton' onClick={handleIncrementSpeaker}>+</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -37,21 +47,21 @@ function AutoForm() {
         <Grid item xs={12} >
           <Typography variant="subtitle1" align="center">Starting Position</Typography>
           <Button
-            sx={{ mr: 2 , padding: 1}}
+            className='buttonStyled'
             variant={startingPosition === 'Source' ? 'contained' : 'outlined'}
             onClick={() => setStartingPosition('Source')}
           >
             Source
           </Button>
           <Button
-            sx={{ mr: 2, padding: 1}}
+            className='buttonStyled'
             variant={startingPosition === 'Center' ? 'contained' : 'outlined'}
             onClick={() => setStartingPosition('Center')}
           >
             Center
           </Button>
           <Button
-            sx={{ mr: 2 , padding: 1}}
+            className='buttonStyled'
             variant={startingPosition === 'AMP' ? 'contained' : 'outlined'}
             onClick={() => setStartingPosition('AMP')}
           >
@@ -61,21 +71,21 @@ function AutoForm() {
         <Grid item xs={12}>
           <Typography variant="subtitle1" align="center">Line Crossed</Typography>
           <Button
-            sx={{ mr: 2 , padding: 1}}
+            className='buttonStyled'
             variant={lineCrossed === 'Yes' ? 'contained' : 'outlined'}
             onClick={() => setLineCrossed('Yes')}
           >
             Yes
           </Button>
           <Button
-            sx={{ mr: 2 , padding: 1}}
+            className='buttonStyled'
             variant={lineCrossed === 'Stationary' ? 'contained' : 'outlined'}
             onClick={() => setLineCrossed('Stationary')}
           >
             Stationary
           </Button>
           <Button
-            sx={{ mr: 2 , padding: 1}}
+            className='buttonStyled'
             variant={lineCrossed === 'No' ? 'contained' : 'outlined'}
             onClick={() => setLineCrossed('No')}
           >

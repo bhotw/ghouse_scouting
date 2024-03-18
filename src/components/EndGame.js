@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Typography, Grid } from '@mui/material';
+import './styles.css';
 
 function EndGameForm() {
   const [climbed, setClimbed] = useState('');
@@ -8,10 +9,6 @@ function EndGameForm() {
 
   const handleSelectClimbed = (value) => {
     setClimbed(value);
-  };
-
-  const handleSelectTrap = (value) => {
-    setTrap(value);
   };
 
   const handleIncrementPenalty = () => {
@@ -24,19 +21,26 @@ function EndGameForm() {
 
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
+    <div style={{ 
+      padding: '20px', 
+      backgroundColor: '#f1bfcc',
+      borderRadius: '10px',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', // Optional: Add a shadow for depth
+      margin: '10px',
+
+      }}>
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Typography variant="subtitle1" align="center">Climbed</Typography>
           <Button
-            sx={{ mr: 2, padding: 1}}
+            className='buttonStyled'
             variant={climbed === 'Yes' ? 'contained' : 'outlined'}
             onClick={() => handleSelectClimbed('Yes')}
           >
             Yes
           </Button>
           <Button
-            sx={{ mr: 2, padding: 1}}
+            className='buttonStyled'
             variant={climbed === 'No' ? 'contained' : 'outlined'}
             onClick={() => handleSelectClimbed('No')}
           >
@@ -46,14 +50,14 @@ function EndGameForm() {
         <Grid item xs={12}>
           <Typography variant="subtitle1" align="center">Trap</Typography>
           <Button
-            sx={{ mr: 2, padding: 1}}
+            className='buttonStyled'
             variant={trap === 'Yes' ? 'contained' : 'outlined'}
             onClick={() => setTrap('Yes')}
           >
             Yes
           </Button>
           <Button
-            sx={{ mr: 2, padding: 1}}
+            className='buttonStyled'
             variant={trap === 'No' ? 'contained' : 'outlined'}
             onClick={() => setTrap('No')}
           >
@@ -66,13 +70,13 @@ function EndGameForm() {
         <Grid item xs={12}>
           <Grid container spacing={2} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button sx={{ bgcolor: '#ff0000', color: '#ffffff' }} onClick={handleDecrementPenalty}>-</Button>
+              <Button className='minusButton' onClick={handleDecrementPenalty}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{penaltyCount}</Typography>
             </Grid>
             <Grid item>
-              <Button sx={{ bgcolor: '#00ff00', color: '#ffffff' }} onClick={handleIncrementPenalty}>+</Button>
+              <Button className='addButton' onClick={handleIncrementPenalty}>+</Button>
             </Grid>
           </Grid>
         </Grid>

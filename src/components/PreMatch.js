@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, Grid, Typography, Box } from '@mui/material';
+import './styles.css';
 
 function PreMatch({ formData, handleChange }) {
   const handleMatchNumberChange = (event) => {
@@ -13,7 +14,13 @@ function PreMatch({ formData, handleChange }) {
   };
 
   return (
-    <Box sx={{ backgroundColor: '#f5f5c5', padding: 2 }}>
+    <Box sx={{ 
+      padding: '20px', 
+      backgroundColor: '#ffffcc',
+      borderRadius: '10px',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', // Optional: Add a shadow for depth
+      margin: '10px',
+      }}>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={6}>
           <TextField

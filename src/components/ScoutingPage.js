@@ -4,6 +4,8 @@ import PreMatch from './PreMatch';
 import AutoSelection from './AutoSection';
 import TeleopForm from './Teleop';
 import EndGameForm from './EndGame';
+import PostMatch from './PostMatch';
+import './styles.css';
 
 function ScoutingPage() {
   const [formData, setFormData] = useState({
@@ -18,7 +20,9 @@ function ScoutingPage() {
     preMatch: {
       // Define initial data for preMatch section here
     },
-    // ... other sections with initial data
+    postMatch: {
+      comment: ''
+    }
   });
 
   const handleChange = (event) => {
@@ -50,8 +54,8 @@ function ScoutingPage() {
   };
 
   return (
-    <div>
-      <h2>Scouting Form</h2>
+    <div className='generalDiv'>
+      <h2>G-House Scouting</h2>
       <form onSubmit={handleSubmit}>
         <PreMatch formData={formData} handleChange={handleChange} />
 
@@ -66,13 +70,23 @@ function ScoutingPage() {
         </div>
 
         <div>
-          <h3> End Game </h3>
+          <h3> End-Game </h3>
           <EndGameForm></EndGameForm>
         </div>
 
-        {/* Add similar divs for Teleop, EndGame, PostMatch sections */}
+        <div>
+          <h3> Post-Match </h3>
+          <PostMatch formData={formData} handleChange={handleChange}/>
+        </div>
 
-        <button type="submit">Submit</button>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          sx={{ mt: 2, padding:2, marginBottom:5 }}
+        >
+          Submit
+        </Button>
       </form>
     </div>
   );

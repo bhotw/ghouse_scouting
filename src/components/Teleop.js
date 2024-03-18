@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Typography, Grid } from '@mui/material';
+import './styles.css';
 
 function TeleopForm() {
   const [speakerCount, setSpeakerCount] = useState(0);
@@ -37,7 +38,14 @@ function TeleopForm() {
   };
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
+    <div style={{ 
+      padding: '20px', 
+      backgroundColor: '#7c991c',
+      borderRadius: '10px',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', // Optional: Add a shadow for depth
+      margin: '10px',
+
+      }}>
       <Grid container spacing={3} alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Typography variant="subtitle1" align="center">Speaker</Typography>
@@ -45,13 +53,13 @@ function TeleopForm() {
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button sx={{ bgcolor: '#ff0000', color: '#ffffff' }} onClick={handleDecrementSpeaker}>-</Button>
+              <Button className='minusButton' onClick={handleDecrementSpeaker}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{speakerCount}</Typography>
             </Grid>
             <Grid item>
-              <Button sx={{ bgcolor: '#00ff00', color: '#ffffff' }} onClick={handleIncrementSpeaker}>+</Button>
+              <Button className='addButton' onClick={handleIncrementSpeaker}>+</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -62,13 +70,13 @@ function TeleopForm() {
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button sx={{ bgcolor: '#ff0000', color: '#ffffff' }} onClick={handleDecrementAmp}>-</Button>
+              <Button className='minusButton' onClick={handleDecrementAmp}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{ampCount}</Typography>
             </Grid>
             <Grid item>
-              <Button sx={{ bgcolor: '#00ff00', color: '#ffffff' }} onClick={handleIncrementAmp}>+</Button>
+              <Button className='addButton' onClick={handleIncrementAmp}>+</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -79,13 +87,13 @@ function TeleopForm() {
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button sx={{ bgcolor: '#ff0000', color: '#ffffff' }} onClick={handleDecrementPenalty}>-</Button>
+              <Button className='minusButton' onClick={handleDecrementPenalty}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{penaltyCount}</Typography>
             </Grid>
             <Grid item>
-              <Button sx={{ bgcolor: '#00ff00', color: '#ffffff' }} onClick={handleIncrementPenalty}>+</Button>
+              <Button className='addButton' onClick={handleIncrementPenalty}>+</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -95,13 +103,14 @@ function TeleopForm() {
         </Grid>
         <Grid item xs={12}>
           <Button
-            sx={{ mr: 2 }}
+            className='buttonStyled'
             variant={goFor === 'Offence' ? 'contained' : 'outlined'}
             onClick={() => handleGoFor('Offence')}
           >
             Offence
           </Button>
           <Button
+            className='buttonStyled'
             variant={goFor === 'Defence' ? 'contained' : 'outlined'}
             onClick={() => handleGoFor('Defence')}
           >
