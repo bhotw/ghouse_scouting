@@ -33,14 +33,24 @@ function EndGameForm() {
         <Grid item xs={12}>
           <Typography variant="subtitle1" align="center">Climbed</Typography>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+            }}
             variant={climbed === 'Yes' ? 'contained' : 'outlined'}
             onClick={() => handleSelectClimbed('Yes')}
           >
             Yes
           </Button>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+            }}
             variant={climbed === 'No' ? 'contained' : 'outlined'}
             onClick={() => handleSelectClimbed('No')}
           >
@@ -50,14 +60,24 @@ function EndGameForm() {
         <Grid item xs={12}>
           <Typography variant="subtitle1" align="center">Trap</Typography>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+            }}
             variant={trap === 'Yes' ? 'contained' : 'outlined'}
             onClick={() => setTrap('Yes')}
           >
             Yes
           </Button>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+            }}
             variant={trap === 'No' ? 'contained' : 'outlined'}
             onClick={() => setTrap('No')}
           >
@@ -70,13 +90,31 @@ function EndGameForm() {
         <Grid item xs={12}>
           <Grid container spacing={2} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button className='minusButton' onClick={handleDecrementPenalty}>-</Button>
+              <Button
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'red',
+                  color: 'azure',
+                }} 
+               onClick={handleDecrementPenalty}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{penaltyCount}</Typography>
             </Grid>
             <Grid item>
-              <Button className='addButton' onClick={handleIncrementPenalty}>+</Button>
+              <Button 
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'green',
+                  color: 'azure',
+                }}
+               onClick={handleIncrementPenalty}>+</Button>
             </Grid>
           </Grid>
         </Grid>

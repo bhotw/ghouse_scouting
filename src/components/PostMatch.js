@@ -22,21 +22,36 @@ function PostMatch({ formData, handleChange }) {
         <Grid alignItems="center" justifyContent="center">
           <Typography variant="subtitle1" align="center">Need To </Typography>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+            }}
             variant={needTo === 'Investigate' ? 'contained' : 'outlined'}
             onClick={() => setNeedTo('Investigate')}
           >
             Investigate
           </Button>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+            }}
             variant={needTo === 'Re-watch' ? 'contained' : 'outlined'}
             onClick={() => setNeedTo('Re-watch')}
           >
             Re-watch
           </Button>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+            }}
             variant={needTo === 'None' ? 'contained' : 'outlined'}
             onClick={() => setNeedTo('None')}
           >

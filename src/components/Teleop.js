@@ -53,13 +53,31 @@ function TeleopForm() {
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button className='minusButton' onClick={handleDecrementSpeaker}>-</Button>
+              <Button 
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'red',
+                  color: 'azure',
+                }}
+               onClick={handleDecrementSpeaker}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{speakerCount}</Typography>
             </Grid>
             <Grid item>
-              <Button className='addButton' onClick={handleIncrementSpeaker}>+</Button>
+              <Button 
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'green',
+                  color: 'azure',
+                }}
+               onClick={handleIncrementSpeaker}>+</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -70,13 +88,31 @@ function TeleopForm() {
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button className='minusButton' onClick={handleDecrementAmp}>-</Button>
+              <Button 
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'red',
+                  color: 'azure',
+                }}
+               onClick={handleDecrementAmp}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{ampCount}</Typography>
             </Grid>
             <Grid item>
-              <Button className='addButton' onClick={handleIncrementAmp}>+</Button>
+              <Button 
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'green',
+                  color: 'azure',
+                }}
+               onClick={handleIncrementAmp}>+</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -87,30 +123,62 @@ function TeleopForm() {
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
             <Grid item>
-              <Button className='minusButton' onClick={handleDecrementPenalty}>-</Button>
+              <Button 
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'red',
+                  color: 'azure',
+                }}
+               onClick={handleDecrementPenalty}>-</Button>
             </Grid>
             <Grid item>
               <Typography variant="body1">{penaltyCount}</Typography>
             </Grid>
             <Grid item>
-              <Button className='addButton' onClick={handleIncrementPenalty}>+</Button>
+              <Button 
+                sx={{
+                  border: '1px solid #000',
+                  borderRadius: '5px',
+                  padding: '10px',
+                  margin: '10px',
+                  backgroundColor: 'green',
+                  color: 'azure',
+                }}
+               onClick={handleIncrementPenalty}>+</Button>
             </Grid>
           </Grid>
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant="subtitle1" align="center">Go for:</Typography>
+          <Typography variant="subtitle1" align="center">Good for:</Typography>
         </Grid>
         <Grid item xs={12}>
           <Button
-            className='buttonStyled'
+            sx={{
+              border: '1px solid #000',
+              borderRadius: '5px',
+              padding: '10px',
+              margin: '10px',
+              color: 'azure',
+              
+            }}
             variant={goFor === 'Offence' ? 'contained' : 'outlined'}
             onClick={() => handleGoFor('Offence')}
           >
             Offence
           </Button>
           <Button
-            className='buttonStyled'
+              sx={{
+                border: '1px solid #000',
+                borderRadius: '5px',
+                padding: '10px',
+                margin: '10px',
+                color: 'azure',
+                
+              }}
             variant={goFor === 'Defence' ? 'contained' : 'outlined'}
             onClick={() => handleGoFor('Defence')}
           >
