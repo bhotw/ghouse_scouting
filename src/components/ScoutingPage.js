@@ -78,4 +78,5 @@ function ScoutingPage() {
   );
 }
 
+
 export default ScoutingPage;

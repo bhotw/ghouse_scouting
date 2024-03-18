@@ -30,6 +30,7 @@ function TeleopForm() {
   const handleDecrementPenalty = () => {
     setPenaltyCount((prevCount) => Math.max(prevCount - 1, 0));
   };
+  
 
   const handleGoFor = (value) => {
     setGoFor(value);
