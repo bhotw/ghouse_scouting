@@ -21,34 +21,39 @@ function LoginPage({ onLogin }) {
   };
 
   return (
-    <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
-      <Box sx={{ p: 3, width: '300px', border: '1px solid #ccc', borderRadius: '5px' }}>
-        <Typography variant="h5" align="center" gutterBottom>
-          Login
-        </Typography>
-        <TextField
-          label="Username"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <TextField
-          label="Password"
-          type="password"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
-          Login
-        </Button>
-        {error && <Typography variant="body2" color="error" align="center">{error}</Typography>}
-      </Box>
-    </Grid>
+    <div>
+      <Typography variant="h4" align="center" marginTop={10} >
+        G-house Scouting 2024
+      </Typography>
+      <Grid container justifyContent="center" alignItems="center" marginTop={22} >
+        <Box sx={{ p: 3, width: '300px', border: '1px solid #ccc', borderRadius: '5px' }}>
+          <Typography variant="subtitle1" align="center" gutterBottom>
+            Please log in to continue
+          </Typography>
+          <TextField
+            label="Username"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
+            Login
+          </Button>
+          {error && <Typography variant="body2" color="error" align="center">{error}</Typography>}
+        </Box>
+      </Grid>
+    </div>
   );
 }
 
