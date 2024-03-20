@@ -1,48 +1,48 @@
-from django.contrib.auth.models import User
-from django.db import models
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Text
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+Base = declarative_base()
 
-    def __str__(self):
-        return self.user.username
+class UserProfile(Base):
+    __tablename__ = 'user_profile'
 
-class Event(models.Model):
-    event_name = models.CharField(max_length=50)
-    match_scouting_data = models.ManyToManyField('MatchScoutingData', blank=True)
+    id = Column(Integer, primary_key=True)
+    user = relationship("User", back_populates="profile")
+    is_active = Column(Boolean, default=True)
+    is_admin = Column(Boolean, default=False)
 
-    # Add other fields for event details
+class Event(Base):
+    __tablename__ = 'event'
 
-    def __str__(self):
-        return f"Match {self.event_name}"
+    id = Column(Integer, primary_key=True)
+    event_name = Column(String(50))
+    match_scouting_data = relationship('MatchScoutingData', back_populates='event')
 
-class MatchScoutingData(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    def __repr__(self):
+        return f"Event(id={self.id}, event_name={self.event_name})"
 
-    #Pre-Match 
-    match_number = models.IntegerField()
-    team_number = models.IntegerField()
-    #Auto
-    auto_starting_position = models.CharField(max_length=50)
-    auto_speaker = models.IntegerField()
-    auto_line_crossed = models.CharField(max_length=50)
-    auto_penalty = models.IntegerField()
-    #Teleop
-    teleop_speaker = models.IntegerField()
-    teleop_amp = models.IntegerField()
-    teleop_penalty = models.IntegerField()
-    temeop_good_for = models.CharField(max_length=50)
-    #End Game
-    climbed = models.CharField(max_length=50)
-    trap = models.CharField(max_length=50)
-    end_game_penalty = models.IntegerField()
-    #Post-Match
-    need_to =  models.CharField(max_length=50)
-    comments = models.TextField()
-    
-    
+class MatchScoutingData(Base):
+    __tablename__ = 'match_scouting_data'
 
-    def __str__(self):
-        return f"Match {self.event.event_name} - Match {self.match_number}"
+    id = Column(Integer, primary_key=True)
+    event_id = Column(Integer, ForeignKey('event.id'))
+    event = relationship('Event', back_populates='match_scouting_data')
+    match_number = Column(Integer)
+    team_number = Column(Integer)
+    auto_starting_position = Column(String(50))
+    auto_speaker = Column(Integer)
+    auto_line_crossed = Column(String(50))
+    auto_penalty = Column(Integer)
+    teleop_speaker = Column(Integer)
+    teleop_amp = Column(Integer)
+    teleop_penalty = Column(Integer)
+    teleop_good_for = Column(String(50))
+    climbed = Column(String(50))
+    trap = Column(String(50))
+    end_game_penalty = Column(Integer)
+    need_to = Column(String(50))
+    comments = Column(Text)
+
+    def __repr__(self):
+        return f"MatchScoutingData(id={self.id}, match_number={self.match_number}, team_number={self.team_number})"
