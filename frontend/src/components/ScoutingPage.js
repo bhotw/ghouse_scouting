@@ -10,20 +10,35 @@ import './styles.css';
 
 function ScoutingPage() {
   const [formData, setFormData] = useState({
-    matchNumber: '',
-    teamNumber: '',
-    auto: {
-      speaker_notes: '',
-      startingPosition: '',
-      lineCrossed: '',
-      penaltyCount: 0,
-    },
+
     preMatch: {
-      // Define initial data for preMatch section here
+      matchNumber: '',
+      teamNumber: '',
     },
+
+    auto: {
+      auto_starting_position: '',
+      auto_line_crossed: '',
+      auto_speaker: 0,
+    },
+
+    teleop: {
+      teleop_speaker: 0,
+      teleop_amp: 0,
+      teleop_penalty: 0,
+      teleop_good_for: '',
+    },
+    endGame: {
+      climbed: '',
+      trap: '',
+      end_game_penalty: '',
+    },
+
     postMatch: {
-      comment: ''
+      need_to: '',
+      comments: '',
     }
+
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Set initial login state to true
@@ -32,12 +47,52 @@ function ScoutingPage() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // Update nested objects within formData
     setFormData((prevData) => ({
       ...prevData,
-      [name]: name.includes('.') // Check for nested fields
-        ? updateNestedObject(prevData[name], name, value)
-        : value,
+      preMatch: {
+        ...prevData.preMatch,
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleAutoFormChange = (fieldName, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      auto: {
+        ...prevData.auto,
+        [fieldName]: value,
+      },
+    }));
+  };
+
+  const handleTeleopFormChange = (fieldName, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      teleop: {
+        ...prevData.teleop,
+        [fieldName]: value,
+      },
+    }));
+  };
+
+  const handleEndGameFormChange = (fieldName, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      endGame: {
+        ...prevData.endGame,
+        [fieldName]: value,
+      },
+    }));
+  };
+
+  const handlePostMatchFormChange = (fieldName, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      postMatch: {
+        ...prevData.postMatch,
+        [fieldName]: value,
+      },
     }));
   };
 
@@ -103,22 +158,22 @@ function ScoutingPage() {
 
           <div>
             <h3>Auto</h3>
-            <AutoSelection></AutoSelection>
+            <AutoSelection formData={formData} handleChange={handleAutoFormChange}/>
           </div>
 
           <div>
             <h3>TeleOP</h3>
-            <TeleopForm></TeleopForm>
+            <TeleopForm formData={formData} handleChange={handleTeleopFormChange}/>
           </div>
 
           <div>
             <h3> End-Game </h3>
-            <EndGameForm></EndGameForm>
+            <EndGameForm formData={formData} handleChange={handleEndGameFormChange}/>
           </div>
 
           <div>
             <h3> Post-Match </h3>
-            <PostMatch formData={formData} handleChange={handleChange}/>
+            <PostMatch formData={formData} handleChange={handlePostMatchFormChange}/>
           </div>
 
           <Button

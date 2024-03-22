@@ -3,12 +3,13 @@ import { Button, Typography, Grid } from '@mui/material';
 import './styles.css';
 
 function AutoForm() {
-  const [speakerCount, setSpeakerCount] = useState(0);
-  const [startingPosition, setStartingPosition] = useState('');
-  const [lineCrossed, setLineCrossed] = useState('');
+  const [auto_speaker, setSpeakerCount] = useState(0);
+  const [auto_starting_position, setStartingPosition] = useState('');
+  const [auto_line_crossed, setLineCrossed] = useState('');
+  
 
   const handleIncrementSpeaker = () => {
-    setSpeakerCount(speakerCount + 1);
+    setSpeakerCount(auto_speaker + 1);
   };
 
   const handleDecrementSpeaker = () => {
@@ -45,7 +46,7 @@ function AutoForm() {
               onClick={handleDecrementSpeaker}>-</Button>
             </Grid>
             <Grid item>
-              <Typography variant="h5">{speakerCount}</Typography>
+              <Typography variant="h5">{auto_speaker}</Typography>
             </Grid>
             <Grid item>
               <Button 
@@ -71,7 +72,7 @@ function AutoForm() {
               padding: '10px',
               margin: '10px',
             }}
-            variant={startingPosition === 'Source' ? 'contained' : 'outlined'}
+            variant={auto_starting_position === 'Source' ? 'contained' : 'outlined'}
             onClick={() => setStartingPosition('Source')}
           >
             Source
@@ -83,7 +84,7 @@ function AutoForm() {
               padding: '10px',
               margin: '10px',
             }}
-            variant={startingPosition === 'Center' ? 'contained' : 'outlined'}
+            variant={auto_starting_position === 'Center' ? 'contained' : 'outlined'}
             onClick={() => setStartingPosition('Center')}
           >
             Center
@@ -95,7 +96,7 @@ function AutoForm() {
               padding: '10px',
               margin: '10px',
             }}
-            variant={startingPosition === 'AMP' ? 'contained' : 'outlined'}
+            variant={auto_starting_position === 'AMP' ? 'contained' : 'outlined'}
             onClick={() => setStartingPosition('AMP')}
           >
             AMP
@@ -110,7 +111,7 @@ function AutoForm() {
               padding: '10px',
               margin: '10px',
             }}
-            variant={lineCrossed === 'Yes' ? 'contained' : 'outlined'}
+            variant={auto_line_crossed === 'Yes' ? 'contained' : 'outlined'}
             onClick={() => setLineCrossed('Yes')}
           >
             Yes
@@ -122,7 +123,7 @@ function AutoForm() {
               padding: '10px',
               margin: '10px',
             }}
-            variant={lineCrossed === 'Stationary' ? 'contained' : 'outlined'}
+            variant={auto_line_crossed === 'Stationary' ? 'contained' : 'outlined'}
             onClick={() => setLineCrossed('Stationary')}
           >
             Stationary
@@ -134,7 +135,7 @@ function AutoForm() {
               padding: '10px',
               margin: '10px',
             }}
-            variant={lineCrossed === 'No' ? 'contained' : 'outlined'}
+            variant={auto_line_crossed === 'No' ? 'contained' : 'outlined'}
             onClick={() => setLineCrossed('No')}
           >
             No
