@@ -1,0 +1,103 @@
+[33mcommit 0090b2a2566bca857cf1124e3723e51c6d36dcc6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 310d749 1411b62
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Thu Mar 21 22:36:55 2024 -0400
+
+    Merge branch 'master' of https://github.com/bhotw/ghouse_scouting
+
+[33mcommit 310d749592bf0afb817003c5fafd1e270323d642[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Thu Mar 21 22:36:17 2024 -0400
+
+    backend stuff
+
+[33mcommit 6b594fffe919b4d1e2bc07667ee6db06b3310de7[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Thu Mar 21 22:35:44 2024 -0400
+
+    trying ti fix the form stuff
+
+[33mcommit 1411b62d460e85847bf049bd1b496f493f1c4bf9[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Wed Mar 20 22:42:06 2024 -0400
+
+    when pressed enter nothing happened on the login screen, now it works the way it is meant to
+
+[33mcommit 9587fef90de677c71c281b0addb6c696f142804f[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Wed Mar 20 10:22:22 2024 -0400
+
+    idk
+
+[33mcommit 2eb181c4390a5e09dcad681e89ccd90a843f40b5[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Wed Mar 20 10:21:41 2024 -0400
+
+    more backend stuff
+
+[33mcommit 6e17d85e4e8efc0208c94d28eace490ef0a76cc0[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Tue Mar 19 22:19:21 2024 -0400
+
+    started doing backend stuff
+
+[33mcommit 59e4118395709b4181387c12704fbd7c96fff9b2[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Tue Mar 19 17:35:33 2024 -0400
+
+    kind of done with the the frontend layout for  now.
+
+[33mcommit e3487795d9a577796f99fdfe0e8d7ad477b951ae[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Mon Mar 18 17:56:41 2024 -0400
+
+    added the loginpage and a test user so that it can be texted for now
+
+[33mcommit 88de1b2fc03c13035e658c4b25883f0db3f05e3b[m
+Merge: 212f11e 97e0d4f
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Mon Mar 18 14:05:46 2024 -0400
+
+    Merge branch 'master' of https://github.com/bhotw/ghouse_scouting
+
+[33mcommit 212f11eaec192ef6504e5bcfa71a3673131edb32[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Mon Mar 18 14:05:38 2024 -0400
+
+    fixed the layout rendring issuse
+
+[33mcommit 97e0d4f18bdebb9c5e40a220c161f3b429dd2eed[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Mon Mar 18 02:07:42 2024 -0400
+
+    new deploy
+
+[33mcommit 575fa7be026031fccaffa734a911993db6321339[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Mon Mar 18 02:04:27 2024 -0400
+
+    moving stuff so they are in the right wayy
+
+[33mcommit 196b44e90ddcb23b2621b54cffddb3b95409c659[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Mon Mar 18 01:29:59 2024 -0400
+
+    idk
+
+[33mcommit f66ee42fb83ff86c214fa0c503947b6dc1331ff6[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Sun Mar 17 23:27:37 2024 -0400
+
+    trying ti fix what i broke
+
+[33mcommit b8793c30d4f0dc4b6e4c1f59d071e3e62e0cdcb2[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Sun Mar 17 23:17:36 2024 -0400
+
+    first commite, the layout kind of works for now.
+
+[33mcommit e721ab08a5c738a2d9b58f44e54fac1efa41c6e3[m
+Author: Md Sheik <mdsheik633@hotmail.com>
+Date:   Sat Mar 16 23:35:24 2024 -0400
+
+    Initialize project using Create React App
