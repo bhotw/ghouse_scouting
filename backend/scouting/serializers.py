@@ -1,10 +1,11 @@
 from rest_framework import serializers
-from .models import UserProfile #, Event, MatchScoutingData
+from .models import CustomUser
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class createUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserProfile
+        model = CustomUser
         fields = '__all__'
+
 
 # class EventSerializer(serializers.ModelSerializer):
 #     class Meta:

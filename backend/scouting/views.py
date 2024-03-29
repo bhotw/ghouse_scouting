@@ -1,11 +1,15 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from django.shortcuts import render
-from .models import UserProfile #, Event, MatchScoutingData
-from .serializers import UserProfileSerializer #, EventSerializer, MatchScoutingDataSerializer
+from .models import CustomUser #, Event, MatchScoutingData
+from .serializers import createUserSerializer#, EventSerializer, MatchScoutingDataSerializer
 
-class UserProfileViewSet(viewsets.ModelViewSet):
-    queryset = UserProfile.objects.all()  # Use instance of the model
-    serializer_class = UserProfileSerializer
+class createUsersViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()  # Use instance of the model
+    serializer_class = createUserSerializer
+
+class viewAllUsers(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = createUserSerializer
 
 # class EventViewSet(viewsets.ModelViewSet):
 #     queryset = Event.objects.all()  # Use instance of the model

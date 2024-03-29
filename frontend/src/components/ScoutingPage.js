@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Typography, Grid, AppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material';
 import PreMatch from './PreMatch';
-import AutoSelection from './AutoSection';
+import AutoSection from './AutoSection';
 import TeleopForm from './Teleop';
 import EndGameForm from './EndGame';
 import PostMatch from './PostMatch';
@@ -56,15 +56,15 @@ function ScoutingPage() {
     }));
   };
 
-  const handleAutoFormChange = (fieldName, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      auto: {
-        ...prevData.auto,
-        [fieldName]: value,
-      },
-    }));
-  };
+  // const handleAutoFormChange = () => {
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     auto: {
+  //       ...prevData.auto,
+  //       [fieldName]: value,
+  //     },
+  //   }));
+  // };
 
   const handleTeleopFormChange = (fieldName, value) => {
     setFormData((prevData) => ({
@@ -158,7 +158,7 @@ function ScoutingPage() {
 
           <div>
             <h3>Auto</h3>
-            <AutoSelection formData={formData} handleChange={handleAutoFormChange}/>
+            <AutoSection onSubmit={(data) => setFormData((prevData) => ({ ...prevData, auto: data }))} />
           </div>
 
           <div>

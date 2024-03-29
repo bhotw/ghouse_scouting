@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'scouting',
 ]
 
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_database_name',
+        'NAME': 'ghouse_scouting',
         'USER': 'ghouse',
         'PASSWORD': 'ghouse-scouting-Db22',
         'HOST': '192.168.1.17',

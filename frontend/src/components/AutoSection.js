@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Typography, Grid } from '@mui/material';
 import './styles.css';
 
-function AutoForm() {
+function AutoSelection({ onSubmit }) {
   const [auto_speaker, setSpeakerCount] = useState(0);
   const [auto_starting_position, setStartingPosition] = useState('');
   const [auto_line_crossed, setLineCrossed] = useState('');
@@ -14,6 +14,21 @@ function AutoForm() {
 
   const handleDecrementSpeaker = () => {
     setSpeakerCount((prevCount) => Math.max(prevCount - 1, 0));
+  };
+
+
+  const handleSubmit = () => {
+    // Create a data object with the form fields
+    const data = {
+      auto_speaker: auto_speaker,
+      auto_starting_position: auto_starting_position,
+      auto_line_crossed: auto_line_crossed,
+    };
+
+    console.log ( "data from auto form: ", data)
+
+    // Call the onSubmit function with the form data
+    onSubmit(data);
   };
 
   return (
@@ -147,4 +162,4 @@ function AutoForm() {
 }
 
 
-export default AutoForm;
+export default AutoSelection;

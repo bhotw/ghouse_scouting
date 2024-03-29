@@ -1,36 +1,44 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Text
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
-
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-Base = declarative_base()
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, username, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-# class User(Base):
-#     __tablename__ = 'user'
+    def create_superuser(self, email, username, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, username, password, **extra_fields)
 
-#     id = Column(Integer, primary_key=True)
-#     username = Column(String(50), unique=True)
-#     # Add other user fields as needed
-
-#     profile = relationship("UserProfile", back_populates="user")
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+class CustomUser(AbstractBaseUser):
+    id = models.AutoField(primary_key=True)
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=150, unique=True)
+    password = models.CharField(max_length=128)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
     def __str__(self):
-        return str(self.user.username)
+        return self.email
 
-# class UserProfile(Base):
-#     __tablename__ = 'user_profile'
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
 
-#     id = Column(Integer, primary_key=True)
-#     user = relationship("User", back_populates="profile")
-#     is_active = Column(Boolean, default=True)
-#     is_admin = Column(Boolean, default=False)
+    def has_module_perms(self, app_label):
+        return self.is_admin
+
+
 
 # class Event(Base):
 #     __tablename__ = 'event'
