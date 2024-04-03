@@ -1,6 +1,5 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from models import Base 
+
+from models import base
 
 DATABASE_URL = 'postgresql://ghouse:ghouse-scouting-Db22@192.168.1.17/ghouse_scouting'
 engine = create_engine(DATABASE_URL)

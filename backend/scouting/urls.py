@@ -1,13 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import SimpleRouter
-from .views import createUsersViewSet, viewAllUsers  # Assuming your viewset is in a file named 'views.py'
-
-router = SimpleRouter()
-router.register('create-users', createUsersViewSet, basename='create-users')
-router.register('view-users', viewAllUsers, basename='view-users')
+from . import views  # Assuming your viewset is in a file named 'views.py'
 
 
 urlpatterns = [
-    path('', include(router.urls)),  # Include router URLs at the root path
-    # ... other URL patterns for your API ...
+    path('register', views.CreateUser.as_view(), name='register'),  
+    path('login', views.UserLogin.as_view(), name='login'),
+    path('logout', views.UserLogout.as_view(), name='logout'),
+    path('user', views.UserView.as_view(), name='user'),
+    path('addscouting', views.AddMatchScouting.as_view(), name='addscouting'),
+    path('getscouting', views.GetScoutingData.as_view(), name="getscouting"),
 ]
