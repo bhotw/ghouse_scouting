@@ -98,18 +98,16 @@ function ScoutingPage() {
                     <label>Match Number:</label>
                     <input
                         type="number"
-                        min="0"
                         value={matchNumber}
-                        onChange={(e) => setMatchNumber(Math.max(0, e.target.value))}
+                        onChange={(e) => setMatchNumber(e.target.value === '' ? '' : Math.max(0, e.target.value))}
                     />
                 </div>
                 <div>
                     <label>Team Number:</label>
                     <input
                         type="number"
-                        min="0"
                         value={teamNumber}
-                        onChange={(e) => setTeamNumber(Math.max(0, e.target.value))}
+                        onChange={(e) => setTeamNumber(e.target.value === '' ? '' : Math.max(0, e.target.value))}
                     />
                 </div>
                 <div>
@@ -252,7 +250,7 @@ function ScoutingPage() {
 
 
             </form>
-            //end of the form
+
         </div>
     )
         ;
