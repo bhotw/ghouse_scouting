@@ -1,26 +1,21 @@
 
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ScoutingPage from './components/ScoutingPage';
 import LoginPage from './components/Login';
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = () => {
-    // Perform your login logic here, such as validating credentials
-    // For simplicity, we'll just set isLoggedIn to true
-    setIsLoggedIn(true);
-  };
+function App() {
 
   return (
-    <div className="App">
-      {!isLoggedIn ? (
-        <LoginPage onLogin={handleLogin} />
-      ) : (
-        <ScoutingPage />
-      )}
-    </div>
+    // <div className="App">
+    //   {!isLoggedIn ? (
+    //     <LoginPage onLogin={handleLogin} />
+    //   ) : (
+    //     <ScoutingPage />
+    //   )}
+    // </div>
+    <LoginPage/>
   );
 }
 
