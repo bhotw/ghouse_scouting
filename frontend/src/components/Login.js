@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Grid, Typography, Box } from '@mui/material';
 import axios from 'axios';
+import cookie from 'universal-cookie';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import ScoutingPage from './ScoutingPage';
+import { AppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material';
+import './styles.css';
 
 
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
+
+
 
 const client = axios.create({
   baseURL : "http://127.0.0.1:8000"
@@ -24,15 +30,23 @@ function LoginPage({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const [anchorEl, setAnchorEl] = useState(null);
+
   useEffect(() => {
-    client.get("/api/user")
-    .then(function(res) {
-      setCurrentUser(true);
-    })
-    .catch(function(error) {
-      setCurrentUser(false);
-    })
-  }, []);
+    if (currentUser) { // Check if user is already logged in
+      client.get("/api/user", 
+      {withCredentials: true} )
+        .then(function(res) {
+          console.log(res);
+          setUsername(res.data.user.username);
+          setCurrentUser(true);
+        })
+        .catch(function(error) {
+          console.error(error);
+          setCurrentUser(true);
+        });
+    }
+  }, [currentUser]);
 
   // const handleLogin = (event) => {
   //   event.preventDefault(); // Prevent the default form submission behavior
@@ -61,7 +75,10 @@ function LoginPage({ onLogin }) {
       }
     ).then(function(res) { 
       setCurrentUser(true);
-    }) ;
+    }) 
+    .catch(function(error) {
+      setError('Invalid username or password');
+    });
   }
 
   function submitLogout(e) {
@@ -74,24 +91,40 @@ function LoginPage({ onLogin }) {
     });
   }
 
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  
   if (currentUser) {
     return (
       <div>
-        <Navbar bg="dark" variant="dark">
-          <Container>
-            <Navbar.Brand>Authentication App</Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                <form onSubmit={e => submitLogout(e)}>
-                  <Button type="submit" variant="light">Log out</Button>
-                </form>
-              </Navbar.Text>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              G-House Scouting
+            </Typography>
+            <Button color="inherit" onClick={handleMenu}>{currentUser.username}</Button>
+            
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>{username}</MenuItem>
+              <MenuItem onClick={handleClose}>Settings</MenuItem>
+              <MenuItem onClick={submitLogout}>Log Out</MenuItem>
+            </Menu>
+            <Button color="inherit">View Page</Button>
+            <Button color="inherit">Admin</Button>
+          </Toolbar>
+        </AppBar>
           <div className="center">
-            <h2>You're logged in!</h2>
+            <ScoutingPage/>
           </div>
         </div>
     );

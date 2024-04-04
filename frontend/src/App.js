@@ -15,7 +15,7 @@ function App() {
     //     <ScoutingPage />
     //   )}
     // </div>
-    <LoginPage/>
+    <LoginPage onLogin />
   );
 }
 

@@ -113,46 +113,13 @@ function ScoutingPage() {
     // ... handle API call and response
   };
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false); // Update isLoggedIn state to false
-    setAnchorEl(null); // Close the menu
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   if (!isLoggedIn) {
     return <LoginPage onLogin={() => setIsLoggedIn(true)} />;
   }
 
   return (
     <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            G-House Scouting
-          </Typography>
-          <Button color="inherit" onClick={handleMenu}>User Name</Button>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
-            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-          </Menu>
-          <Button color="inherit">View Page</Button>
-          <Button color="inherit">Admin</Button>
-        </Toolbar>
-      </AppBar>
       <div className='generalDiv'>
-        <h2>G-House Scouting</h2>
         <form onSubmit={handleSubmit}>
           <PreMatch formData={formData} handleChange={handleChange} />
 
