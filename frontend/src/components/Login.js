@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Grid, Typography, Box } from '@mui/material';
 import axios from 'axios';
-import cookie from 'universal-cookie';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
@@ -15,7 +14,6 @@ import './styles.css';
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
-
 
 
 const client = axios.create({
@@ -33,20 +31,15 @@ function LoginPage({ onLogin }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-    if (currentUser) { // Check if user is already logged in
-      client.get("/api/user", 
-      {withCredentials: true} )
-        .then(function(res) {
-          console.log(res);
-          setUsername(res.data.user.username);
-          setCurrentUser(true);
-        })
-        .catch(function(error) {
-          console.error(error);
-          setCurrentUser(true);
-        });
-    }
-  }, [currentUser]);
+    client.get("/api/user")
+    .then(function(res) {
+      setCurrentUser(true);
+      setUsername(res.data.user.username);
+    })
+    .catch(function(error) {
+      setCurrentUser(false);
+    })
+  }, []);
 
   // const handleLogin = (event) => {
   //   event.preventDefault(); // Prevent the default form submission behavior
@@ -75,10 +68,11 @@ function LoginPage({ onLogin }) {
       }
     ).then(function(res) { 
       setCurrentUser(true);
-    }) 
-    .catch(function(error) {
-      setError('Invalid username or password');
-    });
+      client.get("/api/user")
+      .then(function(res) {
+        setUsername(res.data.user.username);
+      })
+    }) ;
   }
 
   function submitLogout(e) {
@@ -88,6 +82,10 @@ function LoginPage({ onLogin }) {
       {withCredentials: true}
     ).then(function(res) {
       setCurrentUser(false);
+      setUsername('');
+    })
+    .catch(function(error){
+      console.log(error);
     });
   }
 
@@ -108,7 +106,7 @@ function LoginPage({ onLogin }) {
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               G-House Scouting
             </Typography>
-            <Button color="inherit" onClick={handleMenu}>{currentUser.username}</Button>
+            <Button color="inherit" onClick={handleMenu}>{username}</Button>
             
             <Menu
               anchorEl={anchorEl}
