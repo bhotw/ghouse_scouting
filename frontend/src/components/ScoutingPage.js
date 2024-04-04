@@ -1,193 +1,261 @@
 import React, { useState } from 'react';
-import { Button, Typography, Grid, AppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material';
-import PreMatch from './PreMatch';
-import AutoSection from './AutoSection';
-import TeleopForm from './Teleop';
-import EndGameForm from './EndGame';
-import PostMatch from './PostMatch';
-import LoginPage from './Login'; // Import the LoginPage component
 import './styles.css';
 
 function ScoutingPage() {
-  const [formData, setFormData] = useState({
+    // State variables
+    const [matchNumber, setMatchNumber] = useState('');
+    const [teamNumber, setTeamNumber] = useState('');
+    const [speakerCount, setSpeakerCount] = useState(0);
+    const [startingPosition, setStartingPosition] = useState('');
+    const [lineCrossed, setLineCrossed] = useState('');
+    const [teleopSpeaker, setTeleopSpeaker] = useState(0);
+    const [teleopAMP, setTeleopAMP] = useState(0);
+    const [teleopPenalty, setTeleopPenalty] = useState(0);
+    const [endgameClimb, setEndgameClimb] = useState('');
+    const [endgameTrap, setEndgameTrap] = useState('');
+    const [endgamePenalty, setEndgamePenalty] = useState(0);
+    const [postMatchStatus, setPostMatchStatus] = useState('');
+    const [comments, setComments] = useState('');
+    const [showConfirmation, setShowConfirmation] = useState(false); // New state for confirmation prompt
 
-    preMatch: {
-      matchNumber: '',
-      teamNumber: '',
-    },
+    // Confirm submission handler
+    const confirmSubmission = () => {
+        // Actual submission logic here
+        console.log({
+            matchNumber,
+            teamNumber,
+            speakerCount,
+            startingPosition,
+            lineCrossed,
+            teleopSpeaker,
+            teleopAMP,
+            teleopPenalty,
+            endgameClimb,
+            endgameTrap,
+            endgamePenalty,
+            postMatchStatus,
+            comments
+        });
 
-    auto: {
-      auto_starting_position: '',
-      auto_line_crossed: '',
-      auto_speaker: 0,
-    },
+        // Reset the form (when user confirms submission)
+        resetForm();
+    };
 
-    teleop: {
-      teleop_speaker: 0,
-      teleop_amp: 0,
-      teleop_penalty: 0,
-      teleop_good_for: '',
-    },
-    endGame: {
-      climbed: '',
-      trap: '',
-      end_game_penalty: '',
-    },
+    // Reset form logic
+    const resetForm = () => {
+        setMatchNumber('');
+        setTeamNumber('');
+        setSpeakerCount(0);
+        setStartingPosition('');
+        setLineCrossed('');
+        setTeleopSpeaker(0);
+        setTeleopAMP(0);
+        setTeleopPenalty(0);
+        setEndgameClimb('');
+        setEndgameTrap('');
+        setEndgamePenalty(0);
+        setPostMatchStatus('');
+        setComments('');
+        setShowConfirmation(false);
+    };
 
-    postMatch: {
-      need_to: '',
-      comments: '',
-    }
+    // Cancel submission handler
+    const cancelSubmission = () => {
+        setShowConfirmation(false); // Hide confirmation prompt
+    };
 
-  });
+    // Handler to increment/decrement counts
+    const handleCountChange = (stateSetter, increment) => {
+        stateSetter(prevCount => increment ? prevCount + 1 : Math.max(prevCount - 1, 0));
+    };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Set initial login state to true
+    // For speakerCount
+    const incrementSpeakerCount = () => {
+        setSpeakerCount(prevCount => prevCount + 1);
+    };
 
-  const [anchorEl, setAnchorEl] = useState(null);
+    const decrementSpeakerCount = () => {
+        setSpeakerCount(prevCount => Math.max(prevCount - 1, 0));
+    };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      preMatch: {
-        ...prevData.preMatch,
-        [name]: value,
-      },
-    }));
-  };
 
-  // const handleAutoFormChange = () => {
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     auto: {
-  //       ...prevData.auto,
-  //       [fieldName]: value,
-  //     },
-  //   }));
-  // };
+    // Handler to toggle buttons (starting position, line crossed, endgame climb/trap, post match status)
+    const toggleButtonSelection = (stateSetter, currentValue, value) => {
+        stateSetter(currentValue === value ? '' : value);
+    };
 
-  const handleTeleopFormChange = (fieldName, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      teleop: {
-        ...prevData.teleop,
-        [fieldName]: value,
-      },
-    }));
-  };
+    // Submit handler
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setShowConfirmation(true); // Show confirmation prompt instead of submitting immediately
+    };
 
-  const handleEndGameFormChange = (fieldName, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      endGame: {
-        ...prevData.endGame,
-        [fieldName]: value,
-      },
-    }));
-  };
+    return (
+        <div className="generalDiv">
+            <form onSubmit={handleSubmit}>
+                <h1>G-House Scouting</h1>
+                <div>
+                    <label>Match Number:</label>
+                    <input
+                        type="number"
+                        min="0"
+                        value={matchNumber}
+                        onChange={(e) => setMatchNumber(Math.max(0, e.target.value))}
+                    />
+                </div>
+                <div>
+                    <label>Team Number:</label>
+                    <input
+                        type="number"
+                        min="0"
+                        value={teamNumber}
+                        onChange={(e) => setTeamNumber(Math.max(0, e.target.value))}
+                    />
+                </div>
+                <div>
+                    <label>Auto</label>
+                    <div>
+                        <label>Speaker</label>
+                        <button type="button" className="minusButton" onClick={decrementSpeakerCount}>-</button>
+                        {speakerCount}
+                        <button type="button" className="addButton" onClick={incrementSpeakerCount}>+</button>
+                    </div>
+                </div>
 
-  const handlePostMatchFormChange = (fieldName, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      postMatch: {
-        ...prevData.postMatch,
-        [fieldName]: value,
-      },
-    }));
-  };
+                <div>
+                    <label>Starting Position:</label>
+                    {['Source', 'Center', 'AMP'].map((position) => (
+                        <button
+                            key={position}
+                            type="button"
+                            className={startingPosition === position ? 'buttonStyled selected' : 'buttonStyled'}
+                            onClick={() => toggleButtonSelection(setStartingPosition, startingPosition, position)}
+                        >
+                            {position}
+                        </button>
+                    ))}
+                </div>
+                <div>
+                    <label>Line Crossed:</label>
+                    {['Yes', 'Stationary', 'No'].map((option) => (
+                        <button
+                            key={option}
+                            type="button"
+                            className={lineCrossed === option ? 'buttonStyled selected' : 'buttonStyled'}
+                            onClick={() => toggleButtonSelection(setLineCrossed, lineCrossed, option)}
+                        >
+                            {option}
+                        </button>
+                    ))}
+                </div>
 
-  const updateNestedObject = (obj, path, value) => {
-    const pathParts = path.split('.');
-    let currentObject = obj;
-    for (let i = 0; i < pathParts.length - 1; i++) {
-      currentObject = currentObject[pathParts[i]];
-    }
-    currentObject[pathParts[pathParts.length - 1]] = value;
-    return { ...obj }; // Return a new object to trigger state update
-  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Submit form data to backend using axios or fetch
-    console.log('Submitting form data:', formData);
-    // ... handle API call and response
-  };
+                {/* Teleop Section */}
+                <section className="sectionDiv">
+                    <h2>Teleop</h2>
+                    <div>
+                        <label>Speaker</label>
+                        <button type="button" className={"minusButton"} onClick={() => handleCountChange(setTeleopSpeaker, false)}>-</button>
+                        {teleopSpeaker}
+                        <button type="button" className= {"addButton"} onClick={() => handleCountChange(setTeleopSpeaker, true)}>+</button>
+                    </div>
+                    <div>
+                        <label>AMP</label>
+                        <button type="button" className = {"minusButton"} onClick={() => handleCountChange(setTeleopAMP, false)}>-</button>
+                        {teleopAMP}
+                        <button type="button" className = {"addButton"} onClick={() => handleCountChange(setTeleopAMP, true)}>+</button>
+                    </div>
+                    <div>
+                        <label>Penalty</label>
+                        <button type="button" className = {"minusButton"} onClick={() => handleCountChange(setTeleopPenalty, false)}>-</button>
+                        {teleopPenalty}
+                        <button type="button" className = {"addButton"} onClick={() => handleCountChange(setTeleopPenalty, true)}>+</button>
+                    </div>
+                </section>
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+                {/* Endgame Section */}
+                <section className="sectionDiv">
+                    <h2>Endgame</h2>
+                    <div>
+                        <label>Climb</label>
+                        <button type="button"
+                                className={endgameClimb === 'Yes' ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setEndgameClimb, endgameClimb, 'Yes')}>
+                            Yes
+                        </button>
+                        <button type="button"
+                                className={endgameClimb === 'No' ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setEndgameClimb, endgameClimb, 'No')}>
+                            No
+                        </button>
+                    </div>
+                    <div>
+                        <label>Trap</label>
+                        <button type="button"
+                                className={endgameTrap === 'Yes' ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setEndgameTrap, endgameTrap, 'Yes')}>
+                            Yes
+                        </button>
+                        <button type="button"
+                                className={endgameTrap === 'No' ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setEndgameTrap, endgameTrap, 'No')}>
+                            No
+                        </button>
+                    </div>
+                    <div>
+                        <label>Penalty</label>
+                        <button type="button" className = {"minusButton"} onClick={() => handleCountChange(setEndgamePenalty, false)}>-</button>
+                        {endgamePenalty}
+                        <button type="button" className = {"addButton"} onClick={() => handleCountChange(setEndgamePenalty, true)}>+</button>
+                    </div>
+                </section>
 
-  const handleLogout = () => {
-    setIsLoggedIn(false); // Update isLoggedIn state to false
-    setAnchorEl(null); // Close the menu
-  };
+                {/* Post Match Section */}
+                <section className="sectionDiv">
+                    <h2>Post Match</h2>
+                    <div>
+                        <button type="button"
+                                className={postMatchStatus === 'Investigate' ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setPostMatchStatus, postMatchStatus, 'Investigate')}>
+                            Investigate
+                        </button>
+                        <button type="button"
+                                className={postMatchStatus === 'Rewatch' ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setPostMatchStatus, postMatchStatus, 'Rewatch')}>
+                            Rewatch
+                        </button>
+                        <button type="button"
+                                className={postMatchStatus === 'ALL Good' ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setPostMatchStatus, postMatchStatus, 'ALL Good')}>
+                            ALL Good
+                        </button>
+                    </div>
+                    <div>
+                        <label>Comments</label>
+                        <textarea
+                            value={comments}
+                            onChange={(e) => setComments(e.target.value)}
+                            placeholder="Comments"
+                        />
+                    </div>
+                </section>
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
-  if (!isLoggedIn) {
-    return <LoginPage onLogin={() => setIsLoggedIn(true)} />;
-  }
+                {showConfirmation && (
+                    <div className="confirmationPrompt">
+                        <h2>Confirm Submission</h2>
+                        <button onClick={confirmSubmission} className="confirmButton">Yes</button>
+                        <button onClick={cancelSubmission} className="cancelButton">No</button>
+                    </div>
+                )}
+                <button type="submit">Submit</button>
 
-  return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            G-House Scouting
-          </Typography>
-          <Button color="inherit" onClick={handleMenu}>User Name</Button>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
-            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-          </Menu>
-          <Button color="inherit">View Page</Button>
-          <Button color="inherit">Admin</Button>
-        </Toolbar>
-      </AppBar>
-      <div className='generalDiv'>
-        <h2>G-House Scouting</h2>
-        <form onSubmit={handleSubmit}>
-          <PreMatch formData={formData} handleChange={handleChange} />
 
-          <div>
-            <h3>Auto</h3>
-            <AutoSection onSubmit={(data) => setFormData((prevData) => ({ ...prevData, auto: data }))} />
-          </div>
-
-          <div>
-            <h3>TeleOP</h3>
-            <TeleopForm formData={formData} handleChange={handleTeleopFormChange}/>
-          </div>
-
-          <div>
-            <h3> End-Game </h3>
-            <EndGameForm formData={formData} handleChange={handleEndGameFormChange}/>
-          </div>
-
-          <div>
-            <h3> Post-Match </h3>
-            <PostMatch formData={formData} handleChange={handlePostMatchFormChange}/>
-          </div>
-
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            sx={{ mt: 2, padding:2, marginBottom:5 }}
-          >
-            Submit
-          </Button>
-        </form>
-      </div>
-    </div>
-  );
+            </form>
+            //end of the form
+        </div>
+    )
+        ;
 }
 
 export default ScoutingPage;

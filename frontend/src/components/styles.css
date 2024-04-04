@@ -1,30 +1,125 @@
-.buttonStyled {
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-  }
-  
-.addButton {
-  border: 1px solid #000;
+.confirmationPrompt {
+  /* Styles to make this look like a modal or overlay */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
   border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  background-color: green;
-  color: azure;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 1000;
 }
-.minusButton {
-  border: 1px solid #000;
-  border-radius: 5px;
-  padding: 10px;
+
+.confirmButton, .cancelButton {
+  /* Basic styles for the buttons, adjust as needed */
   margin: 10px;
-  background-color: rgb(238, 6, 6);
-  color: azure;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Additional styles for the confirm button */
+.confirmButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Additional styles for the cancel button */
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+}
+
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f2f5; /* Light, neutral background */
 }
 
 .generalDiv {
   padding: 20px;
   border-radius: 10px;
-  background-color: #a5ad9d;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Crisp white background for the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+h1, h2 {
+  color: #333; /* Darker heading color */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #d1d1d1;
+}
+
+/* Button Styles */
+.buttonStyled {
+  border: 1px solid #444; /* Darker border */
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #e8e8e8; /* Light grey background */
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.buttonStyled.selected {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.buttonStyled:hover {
+  background-color: #d8d8d8; /* Slightly darker on hover */
+}
+
+.addButton {
+  background-color: #4CAF50;
+  color: white;
+}
+.addButton:hover {
+  background-color: #3e8e41; /* Darker green on hover */
+}
+
+.minusButton {
+  background-color: #f44336;
+  color: white;
+}
+.minusButton:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+.confirmationPrompt {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Specific Styling */
+.sectionDiv {
+  margin-bottom: 20px;
+  padding: 15px; /* More padding inside sections */
+}
+
