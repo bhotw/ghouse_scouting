@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import './styles.css';
-import './Login';
+import { useNavigate } from 'react-router-dom';
 
-function ScoutingPage() {
+
+function ScoutingPage({onLogout}) {
+
+    const navigate = useNavigate();
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
     // State variables
     const [matchNumber, setMatchNumber] = useState('');
     const [teamNumber, setTeamNumber] = useState('');
@@ -19,8 +24,7 @@ function ScoutingPage() {
     const [comments, setComments] = useState('');
     const [showConfirmation, setShowConfirmation] = useState(false); // New state for confirmation prompt
 
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const username = "testuser"; // Hardcoded username from the Login.js
+
 
 
     // Confirm submission handler
@@ -95,18 +99,32 @@ function ScoutingPage() {
         setShowConfirmation(true); // Show confirmation prompt instead of submitting immediately
     };
 
+
+    // Handler for navigation and logout
+    const handleNavigation = (path) => {
+        setDropdownOpen(false); // Close the dropdown menu
+        navigate(path); // Navigate to the specified path
+    };
+
+    const handleLogoutClick = () => {
+        setDropdownOpen(false); // Close the dropdown menu
+        onLogout(); // Execute the logout function passed from App.js
+        navigate('/'); // Navigate back to the login page
+    };
+
+
     return (
 
         <>
             <nav className="navbar">
                 <div className="navBrand">G-House Scouting</div>
                 <div className="navUser" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                    {username}
+                    testuser
                     {dropdownOpen && (
                         <div className="dropdown">
-                            <div className="dropdownItem">Profile</div>
-                            <div className="dropdownItem">DataView</div>
-                            <div className="dropdownItem">Logout</div>
+                            <div className="dropdownItem" onClick={() => handleNavigation('/profile')}>Profile</div>
+                            <div className="dropdownItem" onClick={() => handleNavigation('/data-view')}>DataView</div>
+                            <div className="dropdownItem" onClick={handleLogoutClick}>Logout</div>
                         </div>
                     )}
                 </div>
