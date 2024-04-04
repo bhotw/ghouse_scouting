@@ -1,3 +1,43 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #333; /* Or any color you prefer */
+  color: white;
+}
+
+.navBrand {
+  font-size: 1.5rem; /* Or the size of your original G-House Scouting heading */
+}
+
+.navUser {
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: #f2f2f2;
+}
+
+
 .confirmationPrompt {
   /* Styles to make this look like a modal or overlay */
   position: fixed;

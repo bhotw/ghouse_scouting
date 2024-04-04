@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './styles.css';
+import './Login';
 
 function ScoutingPage() {
     // State variables
@@ -17,6 +18,10 @@ function ScoutingPage() {
     const [postMatchStatus, setPostMatchStatus] = useState('');
     const [comments, setComments] = useState('');
     const [showConfirmation, setShowConfirmation] = useState(false); // New state for confirmation prompt
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const username = "testuser"; // Hardcoded username from the Login.js
+
 
     // Confirm submission handler
     const confirmSubmission = () => {
@@ -91,6 +96,21 @@ function ScoutingPage() {
     };
 
     return (
+
+        <>
+            <nav className="navbar">
+                <div className="navBrand">G-House Scouting</div>
+                <div className="navUser" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                    {username}
+                    {dropdownOpen && (
+                        <div className="dropdown">
+                            <div className="dropdownItem">Profile</div>
+                            <div className="dropdownItem">DataView</div>
+                            <div className="dropdownItem">Logout</div>
+                        </div>
+                    )}
+                </div>
+            </nav>
         <div className="generalDiv">
             <form onSubmit={handleSubmit}>
                 <h1>G-House Scouting</h1>
@@ -252,8 +272,8 @@ function ScoutingPage() {
             </form>
 
         </div>
-    )
-        ;
+            </>
+    );
 }
 
 export default ScoutingPage;
