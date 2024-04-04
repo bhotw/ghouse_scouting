@@ -114,12 +114,12 @@ function ScoutingPage({onLogout}) {
 
 
     return (
-
         <>
+            {/*Navbar Section*/}
             <nav className="navbar">
                 <div className="navBrand">G-House Scouting</div>
                 <div className="navUser" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                    testuser
+                    User  {/* hardcoded username */}
                     {dropdownOpen && (
                         <div className="dropdown">
                             <div className="dropdownItem" onClick={() => handleNavigation('/profile')}>Profile</div>
@@ -129,91 +129,119 @@ function ScoutingPage({onLogout}) {
                     )}
                 </div>
             </nav>
+
+
+            {/* start of General container*/}
         <div className="generalDiv">
             <form onSubmit={handleSubmit}>
-                <h1>G-House Scouting</h1>
-                <div>
-                    <label>Match Number:</label>
-                    <input
-                        type="number"
-                        value={matchNumber}
-                        onChange={(e) => setMatchNumber(e.target.value === '' ? '' : Math.max(0, e.target.value))}
-                    />
-                </div>
-                <div>
-                    <label>Team Number:</label>
-                    <input
-                        type="number"
-                        value={teamNumber}
-                        onChange={(e) => setTeamNumber(e.target.value === '' ? '' : Math.max(0, e.target.value))}
-                    />
-                </div>
-                <div>
-                    <label>Auto</label>
-                    <div>
-                        <label>Speaker</label>
-                        <button type="button" className="minusButton" onClick={decrementSpeakerCount}>-</button>
-                        {speakerCount}
-                        <button type="button" className="addButton" onClick={incrementSpeakerCount}>+</button>
-                    </div>
-                </div>
 
-                <div>
-                    <label>Starting Position:</label>
-                    {['Source', 'Center', 'AMP'].map((position) => (
-                        <button
-                            key={position}
-                            type="button"
-                            className={startingPosition === position ? 'buttonStyled selected' : 'buttonStyled'}
-                            onClick={() => toggleButtonSelection(setStartingPosition, startingPosition, position)}
-                        >
-                            {position}
-                        </button>
-                    ))}
-                </div>
-                <div>
-                    <label>Line Crossed:</label>
-                    {['Yes', 'Stationary', 'No'].map((option) => (
-                        <button
-                            key={option}
-                            type="button"
-                            className={lineCrossed === option ? 'buttonStyled selected' : 'buttonStyled'}
-                            onClick={() => toggleButtonSelection(setLineCrossed, lineCrossed, option)}
-                        >
-                            {option}
-                        </button>
-                    ))}
-                </div>
+                {/* Match Number and Team Number Section */}
+                <section className="sectionDiv">
+                    <div>
+                        <label>Match Number:</label>
+                        <input
+                            type="number"
+                            value={matchNumber}
+                            onChange={(e) => setMatchNumber(e.target.value === '' ? '' : Math.max(0, e.target.value))}
+                        />
+                    </div>
+                    <div>
+                        <label>Team Number:</label>
+                        <input
+                            type="number"
+                            value={teamNumber}
+                            onChange={(e) => setTeamNumber(e.target.value === '' ? '' : Math.max(0, e.target.value))}
+                        />
+                    </div>
+                </section>
+
+
+                {/* Start of auto section*/}
+                <section className={'sectionDiv'}>
+                    <h2>Auto</h2>
+                    <div>
+                        <div className={'counter'}>
+                            <label className='boldLabel'>Speaker</label>
+                            <button type="button" className="minusButton" onClick={decrementSpeakerCount}>-</button>
+                            {speakerCount}
+                            <button type="button" className="addButton" onClick={incrementSpeakerCount}>+</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className='boldLabel'>Starting Position:</label>
+                        {['Source', 'Center', 'AMP'].map((position) => (
+                            <button
+                                key={position}
+                                type="button"
+                                className={startingPosition === position ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setStartingPosition, startingPosition, position)}
+                            >
+                                {position}
+                            </button>
+                        ))}
+                    </div>
+                    <div>
+                        <label className='boldLabel'>Line Crossed:</label>
+                        {['Yes', 'Stationary', 'No'].map((option) => (
+                            <button
+                                key={option}
+                                type="button"
+                                className={lineCrossed === option ? 'buttonStyled selected' : 'buttonStyled'}
+                                onClick={() => toggleButtonSelection(setLineCrossed, lineCrossed, option)}
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+
+
+                </section>
 
 
                 {/* Teleop Section */}
                 <section className="sectionDiv">
                     <h2>Teleop</h2>
-                    <div>
-                        <label>Speaker</label>
-                        <button type="button" className={"minusButton"} onClick={() => handleCountChange(setTeleopSpeaker, false)}>-</button>
+                    <div className={'counter'}>
+                        <label className='boldLabel'>Speaker</label>
+                        <button type="button" className={"minusButton"}
+                                onClick={() => handleCountChange(setTeleopSpeaker, false)}>-
+                        </button>
                         {teleopSpeaker}
-                        <button type="button" className= {"addButton"} onClick={() => handleCountChange(setTeleopSpeaker, true)}>+</button>
+                        <button type="button" className={"addButton"}
+                                onClick={() => handleCountChange(setTeleopSpeaker, true)}>+
+                        </button>
                     </div>
-                    <div>
-                        <label>AMP</label>
-                        <button type="button" className = {"minusButton"} onClick={() => handleCountChange(setTeleopAMP, false)}>-</button>
+
+                    <div className={'counter'}>
+                        <label className='boldLabel'>AMP</label>
+                        <button type="button" className={"minusButton"}
+                                onClick={() => handleCountChange(setTeleopAMP, false)}>-
+                        </button>
                         {teleopAMP}
-                        <button type="button" className = {"addButton"} onClick={() => handleCountChange(setTeleopAMP, true)}>+</button>
+                        <button type="button" className={"addButton"}
+                                onClick={() => handleCountChange(setTeleopAMP, true)}>+
+                        </button>
                     </div>
-                    <div>
-                        <label>Penalty</label>
-                        <button type="button" className = {"minusButton"} onClick={() => handleCountChange(setTeleopPenalty, false)}>-</button>
+
+                    <div className={'counter'}>
+                        <label className='boldLabel'>Penalty</label>
+                        <button type="button" className={"minusButton"}
+                                onClick={() => handleCountChange(setTeleopPenalty, false)}>-
+                        </button>
                         {teleopPenalty}
-                        <button type="button" className = {"addButton"} onClick={() => handleCountChange(setTeleopPenalty, true)}>+</button>
+                        <button type="button" className={"addButton"}
+                                onClick={() => handleCountChange(setTeleopPenalty, true)}>+
+                        </button>
                     </div>
                 </section>
+
 
                 {/* Endgame Section */}
                 <section className="sectionDiv">
                     <h2>Endgame</h2>
                     <div>
-                        <label>Climb</label>
+                        <label className='boldLabel'>Climb</label>
                         <button type="button"
                                 className={endgameClimb === 'Yes' ? 'buttonStyled selected' : 'buttonStyled'}
                                 onClick={() => toggleButtonSelection(setEndgameClimb, endgameClimb, 'Yes')}>
@@ -226,7 +254,7 @@ function ScoutingPage({onLogout}) {
                         </button>
                     </div>
                     <div>
-                        <label>Trap</label>
+                        <label className='boldLabel'>Trap</label>
                         <button type="button"
                                 className={endgameTrap === 'Yes' ? 'buttonStyled selected' : 'buttonStyled'}
                                 onClick={() => toggleButtonSelection(setEndgameTrap, endgameTrap, 'Yes')}>
@@ -238,11 +266,16 @@ function ScoutingPage({onLogout}) {
                             No
                         </button>
                     </div>
-                    <div>
-                        <label>Penalty</label>
-                        <button type="button" className = {"minusButton"} onClick={() => handleCountChange(setEndgamePenalty, false)}>-</button>
+
+                    <div className={'counter'}>
+                        <label className='boldLabel'>Penalty</label>
+                        <button type="button" className={"minusButton"}
+                                onClick={() => handleCountChange(setEndgamePenalty, false)}>-
+                        </button>
                         {endgamePenalty}
-                        <button type="button" className = {"addButton"} onClick={() => handleCountChange(setEndgamePenalty, true)}>+</button>
+                        <button type="button" className={"addButton"}
+                                onClick={() => handleCountChange(setEndgamePenalty, true)}>+
+                        </button>
                     </div>
                 </section>
 
@@ -267,7 +300,7 @@ function ScoutingPage({onLogout}) {
                         </button>
                     </div>
                     <div>
-                        <label>Comments</label>
+                        <h2>Comments</h2>
                         <textarea
                             value={comments}
                             onChange={(e) => setComments(e.target.value)}
@@ -276,7 +309,7 @@ function ScoutingPage({onLogout}) {
                     </div>
                 </section>
 
-
+                {/*confirmation button*/}
                 {showConfirmation && (
                     <div className="confirmationPrompt">
                         <h2>Confirm Submission</h2>
@@ -284,13 +317,13 @@ function ScoutingPage({onLogout}) {
                         <button onClick={cancelSubmission} className="cancelButton">No</button>
                     </div>
                 )}
-                <button type="submit">Submit</button>
+                <button type="submit" className="buttonStyled submitButton">Submit</button>
 
 
             </form>
 
         </div>
-            </>
+        </>
     );
 }
 

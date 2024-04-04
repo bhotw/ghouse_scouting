@@ -1,14 +1,18 @@
+
+/*
+The navbar section
+ */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: #333; /* Or any color you prefer */
+  background: #333;
   color: white;
 }
 
 .navBrand {
-  font-size: 1.5rem; /* Or the size of your original G-House Scouting heading */
+  font-size: 1.5rem;
 }
 
 .navUser {
@@ -37,9 +41,12 @@
   background: #f2f2f2;
 }
 
+/*
+The confirmation button section
+ */
 
 .confirmationPrompt {
-  /* Styles to make this look like a modal or overlay */
+
   position: fixed;
   top: 50%;
   left: 50%;
@@ -53,7 +60,7 @@
 }
 
 .confirmButton, .cancelButton {
-  /* Basic styles for the buttons, adjust as needed */
+
   margin: 10px;
   padding: 5px 15px;
   border: none;
@@ -73,7 +80,9 @@
   color: white;
 }
 
-/* General Styles */
+/* General Styles
+*/
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -122,13 +131,16 @@ textarea {
 .buttonStyled.selected {
   background-color: #4CAF50;
   color: white;
+  font-weight: bold;
 }
 
 .buttonStyled:hover {
   background-color: #d8d8d8; /* Slightly darker on hover */
+  font-weight: bold;
 }
 
 .addButton {
+  margin: 0 8px;
   background-color: #4CAF50;
   color: white;
 }
@@ -137,6 +149,7 @@ textarea {
 }
 
 .minusButton {
+  margin: 0 8px;
   background-color: #f44336;
   color: white;
 }
@@ -144,22 +157,39 @@ textarea {
   background-color: #d32f2f; /* Darker red on hover */
 }
 
-.confirmationPrompt {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  text-align: center;
-  z-index: 1000;
-}
 
 /* Specific Styling */
 .sectionDiv {
-  margin-bottom: 20px;
-  padding: 15px; /* More padding inside sections */
+  margin-bottom: 10px;
+  margin-top: 5px;
+  padding: 10px; /* More padding inside sections */
+  background-color: #f7f7f7; /* or any other color */
+  border-radius: 5px;
+  border-color: #d32f2f;
+}
+
+.boldLabel {
+  font-weight: bold; /* Makes the text bold */
+  color: #333333; /* Change the hex code to whatever color you desire */
+}
+
+.counter {
+  margin-bottom: 5px; /* Reduce space between counters */
+}
+
+.submitButton {
+  background-color: #4CAF50; /* Example: a nice shade of green */
+  color: white; /* White text */
+  padding: 10px 20px; /* Larger padding for a larger button */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor indicates it's clickable */
+  font-size: 1rem; /* Font size similar to other buttons */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.submitButton:hover {
+  background-color: #45a049; /* Slightly different shade when hovered */
 }
 
