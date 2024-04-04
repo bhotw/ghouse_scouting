@@ -119,7 +119,7 @@ function ScoutingPage({onLogout}) {
             <nav className="navbar">
                 <div className="navBrand">G-House Scouting</div>
                 <div className="navUser" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                    User  {/* hardcoded username */}
+                    User {/* change to whichever user logged in*/}
                     {dropdownOpen && (
                         <div className="dropdown">
                             <div className="dropdownItem" onClick={() => handleNavigation('/profile')}>Profile</div>
