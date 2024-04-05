@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import ScoutingPage from './ScoutingPage';
 import { AppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material';
 import './styles.css';
-
+import { useNavigate } from 'react-router-dom';
 
 
 axios.defaults.xsrfCookieName = 'csrftoken';
@@ -21,6 +21,8 @@ const client = axios.create({
 });
 
 function LoginPage({ onLogin }) {
+
+  
 
   const [currentUser, setCurrentUser ] = useState();
   const [email, setEmail ] = useState('');
@@ -96,6 +98,11 @@ function LoginPage({ onLogin }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+//   const handleNavigation = (path) => {
+//      // Close the dropdown menu
+//     navigate(path); // Navigate to the specified path
+// };
 
   
   if (currentUser) {

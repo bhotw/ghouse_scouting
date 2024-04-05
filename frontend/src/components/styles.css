@@ -1,30 +1,194 @@
-.buttonStyled {
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-  }
-  
-.addButton {
-  border: 1px solid #000;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  background-color: green;
-  color: azure;
+
+/*
+The navbar section
+ */
+ .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #333;
+  color: white;
 }
-.minusButton {
-  border: 1px solid #000;
+
+.navBrand {
+  font-size: 1.5rem;
+}
+
+.navUser {
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdownItem {
   padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: #f2f2f2;
+}
+
+/*
+The confirmation button section
+ */
+
+.confirmationPrompt {
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 1000;
+}
+
+.confirmButton, .cancelButton {
+
   margin: 10px;
-  background-color: rgb(238, 6, 6);
-  color: azure;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Additional styles for the confirm button */
+.confirmButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Additional styles for the cancel button */
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+}
+
+/* General Styles
+*/
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f2f5; /* Light, neutral background */
 }
 
 .generalDiv {
   padding: 20px;
   border-radius: 10px;
-  background-color: #a5ad9d;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Crisp white background for the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: #333; /* Darker heading color */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #d1d1d1;
+}
+
+/* Button Styles */
+.buttonStyled {
+  border: 1px solid #444; /* Darker border */
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #e8e8e8; /* Light grey background */
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.buttonStyled.selected {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.buttonStyled:hover {
+  background-color: #d8d8d8; /* Slightly darker on hover */
+  font-weight: bold;
+}
+
+.addButton {
+  margin: 0 8px;
+  background-color: #4CAF50;
+  color: white;
+}
+.addButton:hover {
+  background-color: #3e8e41; /* Darker green on hover */
+}
+
+.minusButton {
+  margin: 0 8px;
+  background-color: #f44336;
+  color: white;
+}
+.minusButton:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+
+/* Specific Styling */
+.sectionDiv {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  padding: 10px; /* More padding inside sections */
+  background-color: #f7f7f7; /* or any other color */
+  border-radius: 5px;
+  border-color: #d32f2f;
+}
+
+.boldLabel {
+  font-weight: bold; /* Makes the text bold */
+  color: #333333; /* Change the hex code to whatever color you desire */
+}
+
+.counter {
+  margin-bottom: 5px; /* Reduce space between counters */
+}
+
+.submitButton {
+  background-color: #4CAF50; /* Example: a nice shade of green */
+  color: white; /* White text */
+  padding: 10px 20px; /* Larger padding for a larger button */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor indicates it's clickable */
+  font-size: 1rem; /* Font size similar to other buttons */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.submitButton:hover {
+  background-color: #45a049; /* Slightly different shade when hovered */
 }
