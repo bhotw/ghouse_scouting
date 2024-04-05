@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import ScoutingPage from './ScoutingPage';
 import { AppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material';
 import './styles.css';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 
 axios.defaults.xsrfCookieName = 'csrftoken';
@@ -22,7 +22,7 @@ const client = axios.create({
 
 function LoginPage({ onLogin }) {
 
-  
+  // const navigate = useNavigate()
 
   const [currentUser, setCurrentUser ] = useState();
   const [email, setEmail ] = useState('');
@@ -70,10 +70,10 @@ function LoginPage({ onLogin }) {
       }
     ).then(function(res) { 
       setCurrentUser(true);
-      client.get("/api/user")
-      .then(function(res) {
-        setUsername(res.data.user.username);
-      })
+      // client.get("/api/user")
+      // .then(function(res) {
+      //   setUsername(res.data.user.username);
+      // })
     }) ;
   }
 
